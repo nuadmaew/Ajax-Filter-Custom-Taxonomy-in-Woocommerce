@@ -1,0 +1,359 @@
+/**
+ * Custom Taxonomy Filter CSS Styles
+ * Version: 1.0.0
+ */
+
+/* ================================
+   Filter Container
+================================ */
+.ctf-filter {
+    background: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    margin: 20px 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.ctf-filter h3 {
+    margin: 0 0 15px 0;
+    color: #333;
+    font-size: 18px;
+}
+
+/* ================================
+   Filter Row & Form Elements
+================================ */
+.filter-row {
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.filter-select {
+    padding: 10px 12px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    min-width: 150px;
+    background: white;
+    font-size: 14px;
+    transition: border-color 0.3s ease;
+}
+
+.filter-select:focus {
+    outline: none;
+    border-color: #0073aa;
+    box-shadow: 0 0 0 2px rgba(0,115,170,0.2);
+}
+
+.filter-select:disabled {
+    background: #f5f5f5;
+    color: #999;
+    cursor: not-allowed;
+}
+
+/* ================================
+   Search Button
+================================ */
+.search-button {
+    padding: 10px 20px;
+    background: #0073aa;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.search-button:hover:not(:disabled) {
+    background: #005a87;
+}
+
+.search-button:disabled {
+    background: #ccc;
+    cursor: not-allowed;
+}
+
+/* ================================
+   Loading & Error Messages
+================================ */
+.loading-indicator {
+    margin-top: 10px;
+    color: #666;
+    font-style: italic;
+}
+
+.error-message {
+    margin-top: 10px;
+    color: #d63638;
+    background: #fcf0f1;
+    padding: 8px 12px;
+    border-radius: 4px;
+    border-left: 4px solid #d63638;
+}
+
+/* ================================
+   Modal Styles
+================================ */
+.ctf-modal {
+    display: none;
+    position: fixed;
+    z-index: 9999;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.5);
+    animation: fadeIn 0.3s ease;
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 0;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 600px;
+    position: relative;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    animation: slideIn 0.3s ease;
+}
+
+.close {
+    color: #aaa;
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.close:hover {
+    color: #333;
+}
+
+/* ================================
+   Modal Content Sections
+================================ */
+.modal-body {
+    padding: 20px;
+}
+
+.modal-header h3 {
+    margin: 0 0 20px 0;
+    color: #333;
+    font-size: 20px;
+    padding-right: 40px; /* Space for close button */
+}
+
+.modal-images {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 20px;
+    flex-wrap: wrap;
+}
+
+.car-image,
+.product-image {
+    flex: 1;
+    min-width: 150px;
+}
+
+.modal-car-image,
+.modal-product-image {
+    width: 100%;
+    height: auto;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+}
+
+/* ================================
+   Price Section
+================================ */
+.price-label {
+    color: #666;
+    font-weight: 500;
+}
+
+.price-value {
+    color: #0073aa;
+    font-weight: bold;
+}
+
+.total-price .price-value {
+    color: #d63638;
+    font-size: 18px;
+}
+
+/* ================================
+   Specifications
+================================ */
+.specifications {
+    margin-bottom: 20px;
+}
+
+.spec-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 8px 0;
+    border-bottom: 1px solid #eee;
+}
+
+.spec-item:last-child {
+    border-bottom: none;
+}
+
+.spec-label {
+    color: #666;
+    font-weight: 500;
+}
+
+.spec-value {
+    color: #333;
+    font-weight: bold;
+}
+
+/* ================================
+   Modal Actions
+================================ */
+.modal-actions {
+    text-align: center;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+}
+
+.view-product-btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background: #0073aa;
+    color: white;
+    text-decoration: none;
+    border-radius: 4px;
+    font-weight: 500;
+    transition: background-color 0.3s ease;
+}
+
+.view-product-btn:hover {
+    background: #005a87;
+    color: white;
+    text-decoration: none;
+}
+
+/* ================================
+   Animations
+================================ */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from { 
+        opacity: 0;
+        transform: translateY(-50px);
+    }
+    to { 
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* ================================
+   Responsive Design
+================================ */
+@media (max-width: 768px) {
+    .filter-row {
+        flex-direction: column;
+        align-items: stretch;
+    }
+    
+    .filter-select,
+    .search-button {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+    
+    .modal-content {
+        width: 95%;
+        margin: 2% auto;
+    }
+    
+    .modal-images {
+        flex-direction: column;
+    }
+    
+    .price-item {
+        font-size: 14px;
+    }
+    
+    .total-price .price-value {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 480px) {
+    .ctf-filter {
+        padding: 15px;
+        margin: 10px 0;
+    }
+    
+    .modal-body {
+        padding: 15px;
+    }
+    
+    .modal-header h3 {
+        font-size: 18px;
+        padding-right: 30px;
+    }
+    
+    .close {
+        font-size: 24px;
+        top: 10px;
+        right: 15px;
+    }
+}
+
+/* ================================
+   Print Styles
+================================ */
+@media print {
+    .ctf-modal {
+        display: none !important;
+    }
+    
+    .ctf-filter {
+        break-inside: avoid;
+    }
+}section {
+    background: #f8f9fa;
+    padding: 15px;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+
+.price-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.price-item:last-child {
+    margin-bottom: 0;
+}
+
+.price-item.total-price {
+    border-top: 2px solid #ddd;
+    padding-top: 10px;
+    margin-top: 10px;
+    font-weight: bold;
+    font-size: 16px;
+}
+
+.price-
