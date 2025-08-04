@@ -10,7 +10,8 @@ if (!defined('ABSPATH')) {
 
 // Plugin settings and constants
 define('CTF_TAXONOMY', 'car-brand');
-define('CTF_DEFAULT_IMAGE', home_url('/wp-content/uploads/default-product-image.jpg'));
+define('CTF_DEFAULT_TOWBAR_IMAGE', CTF_URL . 'assets/images/default-towbar-image.jpg');
+define('CTF_DEFAULT_CAR_IMAGE', CTF_URL . 'assets/images/default-car-image.jpg');
 define('CTF_POST_TYPE', 'product');
 
 // ACF field names
