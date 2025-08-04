@@ -217,7 +217,7 @@ function ajax_get_product_details() {
         'electrical_price' => $electrical_price,
         'total_price' => $total_price,
         'rating_kg' => $rating_kg,
-        'towbar_image' => CTF_DEFAULT_IMAGE,
+        'towbar_image' => CTF_DEFAULT_TOWBAR_IMAGE,
         'product_url' => get_permalink($product_id)
     );
     
