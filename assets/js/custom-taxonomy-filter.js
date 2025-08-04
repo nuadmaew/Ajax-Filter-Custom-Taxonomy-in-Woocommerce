@@ -1,6 +1,6 @@
 /**
  * Custom Taxonomy Filter JavaScript
- * Version: 1.0.0
+ * Version: 1.0.1 - Updated with working online improvements
  */
 
 jQuery(document).ready(function($) {
@@ -58,6 +58,7 @@ jQuery(document).ready(function($) {
                 populateBrandDropdown(response.data);
                 $brandFilter.prop('disabled', false);
             } else {
+                console.error('Failed to load brands:', response.data);
                 showError('Failed to load brands: ' + (response.data || 'Unknown error'));
             }
             showLoading(false);
@@ -82,6 +83,7 @@ jQuery(document).ready(function($) {
                     populateModelDropdown(response.data);
                     $modelFilter.prop('disabled', false);
                 } else {
+                    console.error('Failed to load models:', response.data);
                     showError('Failed to load models: ' + (response.data || 'Unknown error'));
                 }
                 showLoading(false);
@@ -107,6 +109,7 @@ jQuery(document).ready(function($) {
                     populateYearDropdown(response.data);
                     $yearFilter.prop('disabled', false);
                 } else {
+                    console.error('Failed to load years:', response.data);
                     showError('Failed to load years: ' + (response.data || 'Unknown error'));
                 }
                 showLoading(false);
@@ -132,12 +135,14 @@ jQuery(document).ready(function($) {
         
         // Validate selections
         if (!brandId || !modelId || !yearRange) {
+            console.error('Missing selections');
             showError('Please select all options before searching');
             return;
         }
         
         const years = yearRange.split('-');
         if (years.length !== 2) {
+            console.error('Invalid year range format:', yearRange);
             showError('Invalid year range format');
             return;
         }
@@ -146,6 +151,7 @@ jQuery(document).ready(function($) {
         const yearEnd = parseInt(years[1]);
         
         if (isNaN(yearStart) || isNaN(yearEnd)) {
+            console.error('Invalid year values');
             showError('Invalid year values');
             return;
         }
@@ -166,13 +172,14 @@ jQuery(document).ready(function($) {
             if (response.success) {
                 showModal(response.data);
             } else {
+                console.error('Product search failed:', response.data);
                 showError('Product not found: ' + (response.data || 'No matching product available'));
             }
         });
     }
     
     /**
-     * Make AJAX request with error handling
+     * Make AJAX request with error handling - IMPROVED VERSION
      */
     function makeAjaxRequest(action, data, callback) {
         const requestData = {
@@ -186,7 +193,7 @@ jQuery(document).ready(function($) {
                 callback(response);
             })
             .fail(function(xhr, status, error) {
-                console.error('AJAX request failed:', { action, status, error, xhr });
+                console.error('AJAX request failed:', { action, status, error });
                 showError('Connection error: ' + error);
                 showLoading(false);
             });
@@ -268,6 +275,7 @@ jQuery(document).ready(function($) {
      * Show error message
      */
     function showError(message) {
+        console.error('Showing error:', message);
         $errorMessage.text(message).show();
     }
     
@@ -320,7 +328,7 @@ jQuery(document).ready(function($) {
         // Details section
         html += '<div class="modal-details">';
         
-        // Price section
+        // Price section - IMPROVED with better number handling
         html += `<div class="price-section">
             <div class="price-item">
                 <span class="price-label">Towbar Price:</span>
@@ -346,12 +354,14 @@ jQuery(document).ready(function($) {
             </div>`;
         }
         
-        // Actions
-        html += `<div class="modal-actions">
-            <a href="${escapeHtml(data.product_url)}" class="view-product-btn" target="_blank">
-                View Product Details
-            </a>
-        </div>`;
+        // Actions - Added null check like online version
+        if (data.product_url) {
+            html += `<div class="modal-actions">
+                <a href="${escapeHtml(data.product_url)}" class="view-product-btn" target="_blank">
+                    View Product Details
+                </a>
+            </div>`;
+        }
         
         html += '</div>';
         
@@ -403,11 +413,15 @@ jQuery(document).ready(function($) {
     }
     
     /**
-     * Utility: Format number with thousands separator
+     * Utility: Format number with thousands separator - IMPROVED VERSION
      */
     function formatNumber(num) {
-        if (typeof num !== 'number') return '0';
-        return num.toLocaleString();
+        // Convert to number if it's not already a number (like online version)
+        if (typeof num !== 'number') {
+            num = parseFloat(num) || 0;
+        }
+        const formatted = num.toLocaleString();
+        return formatted;
     }
 });
 
