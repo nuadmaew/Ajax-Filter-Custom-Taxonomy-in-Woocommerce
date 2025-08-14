@@ -212,7 +212,7 @@ function ajax_get_product_details() {
         'model_name' => $model_term ? $model_term->name : '',
         'year_range' => $year_start . '-' . $year_end,
         'car_images' => $product_images,
-        'car_image' => !empty($product_images) ? $product_images[0] : '',
+        'car_image' => !empty($product_images) ? $product_images[0] : CTF_DEFAULT_CAR_IMAGE,
         'towbar_price' => $towbar_price,
         'electrical_price' => $electrical_price,
         'total_price' => $total_price,
